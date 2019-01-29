@@ -23,6 +23,12 @@ public class HelloWordService {
 	@GetMapping("/usuario")
 	public User usuario(){
 		User userUsuario = new User("nico", 25);
+		try {
+		Runtime.getRuntime().exec("sudo python2.7 /usr/lib/python2.7/dist-packages/RPi/zzzpruebaCambioEstado.py 0 16");
+		}catch (Exception e) {
+			return userUsuario;
+		}
+		
 		return (userUsuario);
 	}
 	
