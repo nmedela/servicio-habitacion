@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.habitacion.json.User;
+import com.habitacion.json.Luz;
 
 @RestController
 public class HelloWordService {
@@ -20,28 +20,27 @@ public class HelloWordService {
 	}
 
 	
-	@GetMapping("/usuario")
-	public User usuario(){
-		User userUsuario = new User("nico", 25);
-		try {
-		Runtime.getRuntime().exec("sudo python2.7 /usr/lib/python2.7/dist-packages/RPi/zzzpruebaCambioEstado.py 0 16");
-		}catch (Exception e) {
-			return userUsuario;
-		}
-		
-		return (userUsuario);
-	}
+//	@GetMapping("/luces")
+//	public Luz usuario(){
+//		Luz userUsuario = new Luz(0, 25);
+//		try {
+//			
+//		}catch (Exception e) {
+//			return userUsuario;
+//		}
+//		
+//		return (userUsuario);
+//	}
 	
-	@PostMapping(path="/libros",consumes="application/json")
-    public ResponseEntity<String>  poner( @RequestBody User usuario) {
-        if(usuario.getNombre().equals("nico")) {
-        	System.out.println("Hasta acá llego  ");
-        	return new ResponseEntity(HttpStatus.OK);	
-        }else {
-        	System.out.println("Hasta acá llego 2 " + usuario.getNombre());
-        	return new ResponseEntity(HttpStatus.BAD_REQUEST);
-        }
-        
+	@PostMapping(path="/luces",consumes="application/json")
+    public ResponseEntity<String>  comandoLuz( @RequestBody Luz luzJson) {
+       try {
+    	   luzJson.run();
+    	   return new ResponseEntity(HttpStatus.OK);	
+       }catch(Exception error){
+    	   
+    	   return new ResponseEntity(HttpStatus.BAD_REQUEST);
+       }        
          
     }
 	
