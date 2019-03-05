@@ -1,4 +1,5 @@
 package com.habitacion.servicio;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,14 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.habitacion.json.Luz;
 
 @RestController
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
+@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST })
 public class HelloWordService {
 	@RequestMapping("/hello")
-	String hello (@RequestParam(value="name", defaultValue ="World") String name) {
+	String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
 		return "Hello" + name;
 	}
 
-	
 //	@GetMapping("/luces")
 //	public Luz usuario(){
 //		Luz userUsuario = new Luz(0, 25);
@@ -33,17 +33,27 @@ public class HelloWordService {
 //		
 //		return (userUsuario);
 //	}
-	
-	@PostMapping(path="/luces",consumes="application/json")
-    public ResponseEntity<String>  comandoLuz( @RequestBody Luz luzJson) {
-       try {
-    	   luzJson.run();
-    	   return new ResponseEntity(HttpStatus.OK);	
-       }catch(Exception error){
-    	   
-    	   return new ResponseEntity(HttpStatus.BAD_REQUEST);
-       }        
-         
-    }
-	
+
+	@PostMapping(path = "/luces", consumes = "application/json")
+	public ResponseEntity<String> comandoLuz(@RequestBody Luz luzJson) {
+		try {
+			luzJson.run();
+			this.retardo();
+			return new ResponseEntity(HttpStatus.OK);
+		} catch (Exception error) {
+
+			return new ResponseEntity(HttpStatus.BAD_REQUEST);
+		}
+
+	}
+
+	public void retardo() {
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException ex) {
+			
+		}
+		System.out.println("Adios!");
+	}
+
 }
