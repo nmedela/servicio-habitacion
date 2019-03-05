@@ -53,7 +53,6 @@ public class HelloWordService {
 		} catch (InterruptedException ex) {
 			
 		}
-		System.out.println("Adios!");
 	}
 
 }
