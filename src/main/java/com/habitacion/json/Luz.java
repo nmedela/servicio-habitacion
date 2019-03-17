@@ -9,6 +9,7 @@ public class Luz extends Entidad {
 
 //		Integer id;
 		Integer intensidad;
+		public Luz () {};
 		public Luz (Integer _id, Integer _intensidad){
 			
 			this.setId(_id);

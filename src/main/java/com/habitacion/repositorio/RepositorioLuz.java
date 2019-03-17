@@ -19,13 +19,15 @@ public class RepositorioLuz extends Repositorio<Luz> {
 	@Override
 	public void doUpdate(Luz object) {
 		Luz luz;
+		try {
 		Optional<Luz> oldObject = this.searchById(object.getId());
 		if (oldObject.isPresent()) {
 			luz = oldObject.get();
 			luz.setIntensidad(object.getIntensidad());
 		} else {
 			new Exception("No existe el usuario que quiere actualizar");
-		}
-
+		}}catch(Exception error) {
+			new Exception("algo pasó wachin");
 	}
 	}
+}

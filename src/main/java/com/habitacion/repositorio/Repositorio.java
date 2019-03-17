@@ -10,12 +10,15 @@ public abstract class Repositorio<T extends Entidad> {
 	Set<T> contenidoRepositorio = new HashSet<T>();
 
 	public void create(T entidad) {
-		entidad.esValido();
+//		entidad.esValido();
 		entidad.setId(this.getNewId());
 		this.contenidoRepositorio.add(entidad);
 
 	}
-
+	public Set getContenidoRepositrio() {
+		return this.contenidoRepositorio;
+	}
+	
 	public int getNewId() {
 		if (this.contenidoRepositorio.size() == 0) {
 			return 0;
