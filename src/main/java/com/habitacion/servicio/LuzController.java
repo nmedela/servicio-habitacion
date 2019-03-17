@@ -16,7 +16,7 @@ import com.habitacion.json.Luz;
 
 @RestController
 @CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST })
-public class LuzService {
+public class LuzController {
 	@RequestMapping("/hello")
 	String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
 		return "Hello" + name;
